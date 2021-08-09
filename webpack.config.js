@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     // El archivo que va a compilar
@@ -24,9 +25,23 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                 }
+            },
+            {
+                test: /\.html$/,
+                use: [
+                    { loader: 'html-loader' }
+                ]
             }
         ]
     },
+    plugins: [
+        new HtmlWebpackPlugin({
+            // Donde se ubica
+            template: './public/index.html',
+            // El nombre de nuestro html
+            filename: './index.html',
+        })
+    ],
     devServer: {
         // La dirección que abrirá el server
         contentBase: path.join(__dirname, 'dist'),
