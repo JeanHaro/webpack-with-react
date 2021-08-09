@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     // El archivo que va a compilar
@@ -31,6 +32,15 @@ module.exports = {
                 use: [
                     { loader: 'html-loader' }
                 ]
+            },
+            {
+                // identificar si es un archivo de css o de sass
+                test: /\.s[ac]ss$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader'
+                ]
             }
         ]
     },
@@ -40,6 +50,9 @@ module.exports = {
             template: './public/index.html',
             // El nombre de nuestro html
             filename: './index.html',
+        }),
+        new MiniCssExtractPlugin({
+            filename: '[name].css',
         })
     ],
     devServer: {
