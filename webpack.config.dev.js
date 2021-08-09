@@ -1,9 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
     // El archivo que va a compilar
@@ -13,19 +10,13 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         // Resultado lo que viene siendo nuestro output
         filename: 'bundle.js',
-        // Nuestro public path es la raiz
-        publicPath: "/",
     },
     // Resolver diferentes extensiones con los que trabajaremos
     resolve: {
         // Extensión de JavaScript y React
-        extensions: ['.js', '.jsx'],
-        alias: {
-            '@components': patth.resolve(__dirname, 'src/components/'),
-            '@styles': path.resolve(__dirname, 'src/styles/')
-        }
+        extensions: ['.js', '.jsx']
     },
-    mode: 'production',
+    mode: 'development',
     module: {
         // Reglas
         rules: [
@@ -63,14 +54,13 @@ module.exports = {
         }),
         new MiniCssExtractPlugin({
             filename: '[name].css',
-        }),
-        new CleanWebpackPlugin(),
+        })
     ],
-    optimization: {
-        minimize: true,
-        minimizer: [
-            new CssMinimizerPlugin(),
-            new TerserPlugin(),
-        ]
+    devServer: {
+        // La dirección que abrirá el server
+        contentBase: path.join(__dirname, 'dist'),
+        // Que esté comprimido
+        compress: true,
+        port: 3006,
     }
 }
