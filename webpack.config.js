@@ -14,14 +14,14 @@ module.exports = {
         // Resultado lo que viene siendo nuestro output
         filename: 'bundle.js',
         // Nuestro public path es la raiz
-        publicPath: "./",
+        publicPath: "/",
     },
     // Resolver diferentes extensiones con los que trabajaremos
     resolve: {
         // Extensión de JavaScript y React
         extensions: ['.js', '.jsx'],
         alias: {
-            '@components': patth.resolve(__dirname, 'src/components/'),
+            '@components': path.resolve(__dirname, 'src/components/'),
             '@styles': path.resolve(__dirname, 'src/styles/')
         }
     },
