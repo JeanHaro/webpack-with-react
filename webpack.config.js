@@ -14,7 +14,7 @@ module.exports = {
         // Resultado lo que viene siendo nuestro output
         filename: 'bundle.js',
         // Nuestro public path es la raiz
-        publicPath: "/",
+        publicPath: "./",
     },
     // Resolver diferentes extensiones con los que trabajaremos
     resolve: {
